@@ -1,0 +1,254 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "宠物商店",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "用户"
+    }
+  ],
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "summary": "查询用户信息",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "获取单个用户的个人资料信息，仅已登录用户可查询。",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "用户ID",
+            "required": true,
+            "example": "5",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type2",
+            "in": "query",
+            "description": "类型2",
+            "required": false,
+            "example": "normal2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gq1",
+            "in": "query",
+            "description": "",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Version",
+            "in": "header",
+            "description": "客户端本版本号",
+            "required": true,
+            "example": "1.0.0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "success"
+                  ],
+                  "x-apifox-orders": [
+                    "data",
+                    "success"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "data": {
+                        "createdAt": "2005-02-24 01:35:36",
+                        "gender": "男",
+                        "age": 45,
+                        "birthday": "2010-07-15",
+                        "registerIp": "179.50.144.104",
+                        "isVip": true,
+                        "avatar": "http://dummyimage.com/100x100",
+                        "city": "厦门市",
+                        "username": "邱军",
+                        "phone": "18687866771",
+                        "id": 27,
+                        "status": "disabled",
+                        "email": "l.ototlo@qq.com"
+                      },
+                      "success": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "用户不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "errorCode": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "errorCode"
+                  ],
+                  "x-apifox-orders": [
+                    "success",
+                    "errorCode"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "examples": {
+                  "1": {
+                    "summary": "用户不存在",
+                    "value": {
+                      "success": false,
+                      "errorCode": 404001
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/1736823/apis/api-43804447-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "用户ID"
+          },
+          "gender": {
+            "type": "string",
+            "title": "性别"
+          },
+          "username": {
+            "type": "string",
+            "title": "用户"
+          },
+          "email": {
+            "type": "string",
+            "title": "邮箱"
+          },
+          "phone": {
+            "type": "string",
+            "title": "手机号"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "normal",
+              "disabled"
+            ],
+            "x-apifox": {
+              "enumDescriptions": {
+                "normal": "正常",
+                "disabled": "禁用"
+              }
+            },
+            "title": "账号状态"
+          },
+          "age": {
+            "type": "integer",
+            "title": "年龄"
+          },
+          "birthday": {
+            "type": "string",
+            "title": "生日"
+          },
+          "registerIp": {
+            "type": "string",
+            "title": "注册IP"
+          },
+          "isVip": {
+            "type": "boolean",
+            "title": "是否VIP会员"
+          },
+          "avatar": {
+            "type": "string",
+            "title": "头像"
+          },
+          "city": {
+            "type": "string",
+            "title": "城市"
+          }
+        },
+        "xml": {
+          "name": "User"
+        },
+        "required": [
+          "age",
+          "birthday",
+          "registerIp",
+          "isVip",
+          "avatar",
+          "city",
+          "gender"
+        ],
+        "x-apifox-orders": [
+          "id",
+          "gender",
+          "username",
+          "email",
+          "phone",
+          "status",
+          "age",
+          "birthday",
+          "registerIp",
+          "isVip",
+          "avatar",
+          "city"
+        ],
+        "x-apifox-refs": {},
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "用户相关"
+      }
+    }
+  },
+  "servers": []
+}
